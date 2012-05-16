@@ -1,0 +1,93 @@
+Suburban Wetland TransceiveR
+
+https://github.com/bertrix/SWTR
+
+SWTR V1.1f changelist 120516
++Conditioned debug code to a _DEBUG variable, can disable via settings.h for reduced binary size but with no serial messages.
++tabified code, may look weird in Arduino IDE
+
+SWTR V1.1e changelist 120515
++Redid the reply packet memory allocation functionality, no more memory leaks!!
++The above means that FreeIMU may actually work again...maybe
+
+SWTR V1.1d changelist 120509
++Added a free memory scanner library...I think we need a bigger chip.
++Added a print function to the sensor libraries and call them on stack input. Allows users to determine packet structure at runtime via terminal
++Implemented an analog sensor class for analog pins. Like fake sensor, but returns ADC values from a user defined pin
++Reset failsafe parameters for servos to NOT fail deadly on ESC powered turbines (untested)
+** DO NOT USE FREEIMU ANYMORE, TOO MUCH RAM! **
+
+SWTR V1.1b/c changelist 120508:
++Re-did the backend communications. Responses are now fed into a dynamic buffer instead of a stuct
+ This will  make future sensor additions much easier as you no longer need to define a specific field for a specific item
++Updated FreeIMU shim to account for new backend methods
++Updated HMC6352 class to account for new backend methods
++Added a fakeSensor class so one can play with sensors without owning sensors
+
+SWTR V1.1 changelist:
++Changed Wishield source to CapnBry branch (Arduino 1.0 compat, formal master tree merge request)
++Upgraded FreeIMU to 2012/01/18
++Settings.h changed to reflect CapnBry library modifications (security settings in particular)
++g2100.h now has #ifndef for zg_get_rssi() for library compatibility
+
+
+SWTR V1.1a changelist 120507:
++Added a HMC6352 field to the RCoIP struct for a cheaper compass option, also added supporting drivers
+
+----------------------------------
+
+Install instructions:
+
+This is a stand-alone sketch, open the SWTR.ino file and compile from within the Arduino IDE or your preferred bulid environment.
+The sketch requites the IL298 library and CapnBry's Wishield fork reachable by Arduino.
+
+By default the sketch is set for 2 servo inputs and 1 fake sensor output
+Please consult settings.h for default settings.
+
+Minimum hardware requirements are an Arduino Duemilanove and any Wishield board with INT jumper set to D8
+Note that current Wishield PCBs are incompatible with Arduino Mega boards due to SPI pin placement.
+
+Consult the wiki on the website above for more information.
+
+Running patch list from a fresh install-
+
+Use the following sources:
+
+Arduino 1.0 from Arduino.cc
+
+RCKit 1.1 by Mike McCauley 
+http://www.open.com.au/mikem/arduino/RCKit/
+
+IL298 1.0 by Joseph East
+(this site)
+
+Async Labs Wishield user contributed branch - 
+CapnBry commitID 23f701c75b2a4110c4f1a67e322a046eb9363798
+https://github.com/CapnBry/WiShield_user_contrib/commit/23f701c75b2a4110c4f1a67e322a046eb9363798
+
+Fork graph for project:
+https://github.com/asynclabs/WiShield_user_contrib/network
+
+*OPTIONAL*
+FreeIMU 2012/01/18 by Fabio Varesano
+http://www.varesano.net/projects/hardware/FreeIMU
+*END OPTIONAL*
+
+Directions: 
+
+1. Set the app config to work with socketapp (app_config.h, or see AsyncLabs wiki)
+
+2. Goto socketapp.h and set the inputbuffer to be unsigned.
+
+3. Goto g2100.h and comment out the declaration for zg_get_rssi(), this is due to linker errors in Arduino
+   zg_get_rssi() is redeclared in the external section of the SWTR firmware, but note this this will break other apps (maybe)
+   
+   Alternatively you could do #ifndef RCRx_h on that line for complatibility, though it'll look dirty
+
+4. Goto SPI.h and set the appropriate interrupt pin, we use "USE_DIG8_INTR"
+   Note that this is absolutely required if using I2C as there are boot conflicts otherwise.
+   
+5. Set the IMU to your appropriate board revision via FreeIMU.h, if any. Remember to replace wire.h with thier version on the website
+
+The repo has a folder of pre-customized libraries if you wish to use those instead of modifying your own
+

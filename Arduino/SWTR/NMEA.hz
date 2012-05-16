@@ -1,0 +1,34 @@
+// NMEA.h
+//
+// NMEA parser class for extracting strings from Arduino UART
+// It was designed for NMEA, but really it's a generic string scraper
+/// 
+
+#ifndef NMEA_h
+#define NMEA_h
+
+#include "Sensor.h"
+
+/////////////////////////////////////////////////////////////////////
+/// \class ServoSetter ServoSetter.h <ServoSetter.h>
+/// \brief Setter class that limits its input to between specified min and max values
+///
+class NMEA : public Sensor
+{   
+public:
+    /// \param[in] servo The target Servo instance. It is the callers job to attach the Servo to
+    /// the servo output pin
+    NMEA();
+
+    virtual void read(packetStruct* out);
+
+protected:
+
+private:
+
+	char buffidx;
+	void readline(packetStruct*); 
+	
+};
+
+#endif 

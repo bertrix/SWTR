@@ -1,0 +1,35 @@
+﻿<Window x:Class="DroneTester.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="C2C Drone Tester" Height="400" Width="645" Icon="/DroneTester;component/img/C2Cico.png">
+    
+    <Grid>
+        <Image Height="50" HorizontalAlignment="Left" Margin="186,77,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="59" Source="/DroneTester;component/img/UniSA.png" />
+        <Image Height="22" HorizontalAlignment="Left" Margin="51,77,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="129" Source="/DroneTester;component/img/baelogo.png" />
+        <Image Height="22" HorizontalAlignment="Left" Margin="60,105,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="115" Source="/DroneTester;component/img/C2C.png" />
+        <Label Content="Drone Tester V0.2" Height="39" HorizontalAlignment="Left" Margin="60,12,0,0" Name="label1" VerticalAlignment="Top" FontSize="20" Width="177" FontFamily="Tahoma" />
+        <Label Content="Connection status" Height="28" HorizontalAlignment="Left" Margin="506,12,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Servo control" Height="28" HorizontalAlignment="Left" Margin="100,167,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Sensor feedback" Height="28" HorizontalAlignment="Left" Margin="400,167,0,0" Name="label4" VerticalAlignment="Top" />
+        <Separator Style="{DynamicResource VerticalSeparatorStyle}" />
+        <Separator Height="28" HorizontalAlignment="Right" Margin="0,133,0,0" Name="separator1" VerticalAlignment="Top" Width="623" />
+        <Image Height="15" HorizontalAlignment="Left" Margin="584,53,0,0" Name="imgStatus" Stretch="Fill" VerticalAlignment="Top" Width="15" Source="/DroneTester;component/img/red.png" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="400,45,0,0" Name="txtIP" VerticalAlignment="Top" Width="120" />
+        <Button Content="Connect" Height="23" HorizontalAlignment="Left" Margin="422,76,0,0" Name="btnConnect" VerticalAlignment="Top" Width="75" Click="btnConnect_Click" />
+        <Button Content="Disconnect" Height="23" HorizontalAlignment="Left" Margin="422,105,0,0" Name="btnDisconnect" VerticalAlignment="Top" Width="75" Click="btnDisconnect_Click" />
+        <Image Height="30" HorizontalAlignment="Left" Margin="548,38,0,0" Name="imgWifi" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/DroneTester;component/img/stat_sys_wifi_signal_1_fully.png" />
+        <Label Content="IP Address:" Height="28" HorizontalAlignment="Left" Margin="326,43,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="555,64,0,0" Name="lSignal" VerticalAlignment="Top" />
+        <Label Content="HMC-6352" Height="28" HorizontalAlignment="Left" Margin="326,202,0,0" Name="label6" VerticalAlignment="Top" />
+        <Label Content="Bearing:" Height="28" HorizontalAlignment="Left" Margin="326,219,0,0" Name="label7" VerticalAlignment="Top" />
+        <Label Content="-" Height="28" HorizontalAlignment="Left" Margin="382,219,0,0" Name="lHMCBearing" VerticalAlignment="Top" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="400,219,0,0" Name="label8" VerticalAlignment="Top" Content="º" />
+        <Slider Height="83" HorizontalAlignment="Left" Margin="100,219,0,0" Name="slPin3" VerticalAlignment="Top" Width="39" Orientation="Vertical" Maximum="180" Minimum="0" TickFrequency="2" IsSnapToTickEnabled="False" TickPlacement="None" ValueChanged="slPin3_ValueChanged" Value="90" />
+        <Slider Height="83" HorizontalAlignment="Left" Margin="165,219,0,0" Name="slPin5" VerticalAlignment="Top" Width="31" Orientation="Vertical" TickPlacement="None" Maximum="180" Minimum="0" TickFrequency="2" ValueChanged="slPin5_ValueChanged" Value="90" />
+        <Label Content="Pin 5" Height="28" HorizontalAlignment="Left" Margin="158,308,0,0" Name="label9" VerticalAlignment="Top" />
+        <Label Content="Pin 3" Height="28" HorizontalAlignment="Left" Margin="91,308,0,0" Name="label10" VerticalAlignment="Top" />
+        <Label Content="Analog Sensor:" Height="28" HorizontalAlignment="Left" Margin="326,253,0,0" Name="label11" VerticalAlignment="Top" />
+        <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="413,253,0,0" Name="lAnalog" VerticalAlignment="Top" />
+    </Grid>
+    
+</Window>
